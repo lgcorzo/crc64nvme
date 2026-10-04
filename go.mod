@@ -1,4 +1,4 @@
-module github.com/minio/crc64nvme
+module github.com/lgcorzo/crc64nvme
 
 go 1.22
 
