@@ -118,7 +118,7 @@ func (d *digest) UnmarshalBinary(b []byte) error {
 
 func update(crc uint64, p []byte) uint64 {
 	if hasAsm && len(p) > 127 {
-		ptr := unsafe.Pointer(&p[0])
+		ptr := unsafe.Pointer(unsafe.SliceData(p))
 		if align := (uintptr(ptr)+15)&^0xf - uintptr(ptr); align > 0 {
 			// Align to 16-byte boundary.
 			crc = update(crc, p[:align])
