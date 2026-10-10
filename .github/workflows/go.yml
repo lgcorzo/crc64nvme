@@ -6,9 +6,13 @@ on:
   pull_request:
     branches: [ main ]
 
+permissions:
+  contents: read
 
 jobs:
   build:
+    permissions:
+      contents: read
     strategy:
       matrix:
         go-version: [1.22.x, 1.23.x, 1.24.x]
@@ -40,6 +44,8 @@ jobs:
       run: go test -cpu="1,4" -short -race -v .
 
   build-special:
+    permissions:
+      contents: read
     env:
       CGO_ENABLED: 0
     runs-on: ubuntu-latest
